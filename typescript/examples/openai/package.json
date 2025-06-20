@@ -1,0 +1,19 @@
+{
+  "name": "siren-openai-example",
+  "version": "1.0.0",
+  "description": "Siren Agent Toolkit OpenAI example",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx index.ts",
+    "dev": "tsx --watch index.ts"
+  },
+  "dependencies": {
+    "@sirenapp/agent-toolkit": "file:../../",
+    "openai": "^4.86.0",
+    "dotenv": "^16.0.5"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

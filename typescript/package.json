@@ -1,0 +1,99 @@
+{
+  "name": "@sirenapp/agent-toolkit",
+  "version": "1.0.0",
+  "description": "Agent toolkit for Siren notification platform",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./openai": {
+      "import": "./dist/openai/index.js",
+      "require": "./dist/openai/index.js",
+      "types": "./dist/openai/index.d.ts"
+    },
+    "./langchain": {
+      "import": "./dist/langchain/index.js",
+      "require": "./dist/langchain/index.js",
+      "types": "./dist/langchain/index.d.ts"
+    },
+    "./ai-sdk": {
+      "import": "./dist/ai-sdk/index.js",
+      "require": "./dist/ai-sdk/index.js",
+      "types": "./dist/ai-sdk/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "type-check": "tsc --noEmit",
+    "prepublishOnly": "npm run type-check && npm run test && npm run build",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags"
+  },
+  "keywords": [
+    "siren",
+    "notifications",
+    "agent",
+    "toolkit",
+    "ai",
+    "openai",
+    "langchain",
+    "ai-sdk"
+  ],
+  "workspaces": [
+    ".",
+    "examples/*"
+  ],
+  "author": "Siren",
+  "license": "MIT",
+  "dependencies": {
+    "zod": "^3.22.4",
+    "zod-to-json-schema": "^3.22.4",
+    "@sirenapp/ts-sdk": "file:../../siren-ts-sdk"
+  },
+  "peerDependencies": {
+    "openai": "^4.0.0",
+    "@langchain/core": "^0.1.0",
+    "ai": "^4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "openai": {
+      "optional": true
+    },
+    "@langchain/core": {
+      "optional": true
+    },
+    "ai": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "jest": "^29.6.2",
+    "ts-jest": "^29.1.1",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE",
+    "VERSION",
+    "package.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sirenapp/agent-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sirenapp/agent-toolkit/issues"
+  },
+  "homepage": "https://github.com/sirenapp/agent-toolkit#readme"
+}

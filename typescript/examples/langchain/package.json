@@ -1,0 +1,21 @@
+{
+  "name": "siren-langchain-example",
+  "version": "1.0.0",
+  "description": "Siren Agent Toolkit LangChain example",
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts",
+    "dev": "tsx --watch index.ts"
+  },
+  "dependencies": {
+    "@sirenapp/agent-toolkit": "file:../../",
+    "@langchain/core": "^0.1.0",
+    "@langchain/openai": "^0.0.15",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.1.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
