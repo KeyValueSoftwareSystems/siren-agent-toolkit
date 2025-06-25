@@ -5,6 +5,7 @@ export default defineConfig({
     'src/openai/index.ts',
     'src/langchain/index.ts',
     'src/ai-sdk/index.ts',
+    'src/mcp-server/index.ts',
   ],
   format: ['cjs', 'esm'],
   dts: true,

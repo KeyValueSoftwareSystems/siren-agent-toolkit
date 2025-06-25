@@ -49,7 +49,7 @@ export const createTemplate = async (
     
     return { template };
   } catch (error) {
-    return 'Failed to create template';
+    return { error: `Failed to create template: ${error}` };
   }
 };
 

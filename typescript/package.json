@@ -4,6 +4,9 @@
   "description": "Agent toolkit for Siren notification platform",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=18"
+  },
   "exports": {
     "./openai": {
       "import": "./dist/openai/index.js",
@@ -19,6 +22,11 @@
       "import": "./dist/ai-sdk/index.js",
       "require": "./dist/ai-sdk/index.js",
       "types": "./dist/ai-sdk/index.d.ts"
+    },
+    "./mcp-server": {
+      "import": "./dist/mcp-server/index.js",
+      "require": "./dist/mcp-server/index.js",
+      "types": "./dist/mcp-server/index.d.ts"
     }
   },
   "scripts": {
@@ -41,7 +49,8 @@
     "ai",
     "openai",
     "langchain",
-    "ai-sdk"
+    "ai-sdk",
+    "mcp-server"
   ],
   "workspaces": [
     ".",
@@ -50,14 +59,15 @@
   "author": "Siren",
   "license": "MIT",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.13.1",
+    "@sirenapp/ts-sdk": "file:../../siren-ts-sdk",
     "zod": "^3.22.4",
-    "zod-to-json-schema": "^3.22.4",
-    "@sirenapp/ts-sdk": "file:../../siren-ts-sdk"
+    "zod-to-json-schema": "^3.22.4"
   },
   "peerDependencies": {
-    "openai": "^4.0.0",
     "@langchain/core": "^0.1.0",
-    "ai": "^4.0.0"
+    "ai": "^4.0.0",
+    "openai": "^4.0.0"
   },
   "peerDependenciesMeta": {
     "openai": {
@@ -90,10 +100,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sirenapp/agent-toolkit.git"
+    "url": "https://github.com/KeyValueSoftwareSystems/siren-agent-toolkit.git"
   },
   "bugs": {
-    "url": "https://github.com/sirenapp/agent-toolkit/issues"
+    "url": "https://github.com/KeyValueSoftwareSystems/siren-agent-toolkit/issues"
   },
-  "homepage": "https://github.com/sirenapp/agent-toolkit#readme"
+  "homepage": "https://github.com/KeyValueSoftwareSystems/siren-agent-toolkit#readme"
 }
