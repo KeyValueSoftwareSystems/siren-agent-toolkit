@@ -21,7 +21,7 @@ import scheduleWorkflowTool from './workflows/scheduleWorkflow';
 import configureNotificationWebhooksTool from './webhooks/configureNotificationWebhooks';
 import configureInboundWebhooksTool from './webhooks/configureInboundWebhooks';
 
-import { SirenClient } from '@sirenapp/ts-sdk';
+import { SirenClient } from '@trysiren/node';
 import { Context } from './configuration';
 
 export type Tool = {

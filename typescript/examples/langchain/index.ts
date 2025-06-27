@@ -2,7 +2,7 @@ import { ChatOpenAI } from '@langchain/openai';
 import { AgentExecutor, createStructuredChatAgent } from 'langchain/agents';
 import { ChatPromptTemplate } from '@langchain/core/prompts';
 import {pull} from 'langchain/hub';
-import { SirenAgentToolkit } from '@sirenapp/agent-toolkit/langchain';
+import { SirenAgentToolkit } from '@trysiren/agent-toolkit/langchain';
 import 'dotenv/config';
 
 // ChatOpenAI apiKey defaults to process.env['OPENAI_API_KEY']

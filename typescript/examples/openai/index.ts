@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { SirenAgentToolkit } from '@sirenapp/agent-toolkit/openai';
+import { SirenAgentToolkit } from '@trysiren/agent-toolkit/openai';
 import 'dotenv/config';
 
 const openai = new OpenAI({

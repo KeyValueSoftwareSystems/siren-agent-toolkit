@@ -1,6 +1,6 @@
 import { openai } from '@ai-sdk/openai';
 import { generateText } from 'ai';
-import { SirenAgentToolkit } from '@sirenapp/agent-toolkit/ai-sdk';
+import { SirenAgentToolkit } from '@trysiren/agent-toolkit/ai-sdk';
 import 'dotenv/config';
 
 const sirenToolkit = new SirenAgentToolkit({
