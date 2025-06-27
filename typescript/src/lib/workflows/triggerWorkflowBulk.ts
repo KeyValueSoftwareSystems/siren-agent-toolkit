@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { SirenClient, WorkflowBulkTriggerRequest } from '@sirenapp/ts-sdk';
+import { SirenClient, WorkflowBulkTriggerRequest } from '@trysiren/node';
 import { Context } from '../configuration';
 import type { Tool } from '../tools';
 

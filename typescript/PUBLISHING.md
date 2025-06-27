@@ -1,4 +1,4 @@
-# Publishing Guide for @sirenapp/agent-toolkit
+# Publishing Guide for @trysiren/agent-toolkit
 
 This guide covers how to publish the Siren Agent Toolkit TypeScript package to npm.
 
@@ -7,7 +7,7 @@ This guide covers how to publish the Siren Agent Toolkit TypeScript package to n
 Before publishing, ensure you have:
 
 1. **npm Account**: Create an account at [npmjs.com](https://www.npmjs.com)
-2. **Organization Access**: Must be added to the `@sirenapp` organization on npm
+2. **Organization Access**: Must be added to the `@trysiren` organization on npm
 3. **Authentication**: Configured npm authentication locally
 4. **Repository Access**: Push access to the GitHub repository
 
@@ -24,10 +24,10 @@ Enter your npm credentials when prompted.
 ### 2. Verify Organization Access
 
 ```bash
-npm access list packages @sirenapp
+npm access list packages @trysiren
 ```
 
-You should see the packages you have access to in the @sirenapp organization.
+You should see the packages you have access to in the @trysiren organization.
 
 ### 3. Configure npm Token (for CI/CD)
 
@@ -88,10 +88,10 @@ The `prepublishOnly` script will automatically run:
 
 ```bash
 # Check if package is available
-npm view @sirenapp/agent-toolkit
+npm view @trysiren/agent-toolkit
 
 # Test installation
-npm install @sirenapp/agent-toolkit
+npm install @trysiren/agent-toolkit
 ```
 
 ## 🤖 Automated Publishing via GitHub Actions
@@ -180,8 +180,8 @@ npm version prerelease --preid=beta
 npm publish --tag beta
 
 # Install pre-release
-npm install @sirenapp/agent-toolkit@alpha
-npm install @sirenapp/agent-toolkit@beta
+npm install @trysiren/agent-toolkit@alpha
+npm install @trysiren/agent-toolkit@beta
 ```
 
 ## 🐛 Troubleshooting
@@ -190,13 +190,13 @@ npm install @sirenapp/agent-toolkit@beta
 
 **1. Permission Denied**
 ```
-npm ERR! 403 Forbidden - PUT https://registry.npmjs.org/@sirenapp%2fagent-toolkit
+npm ERR! 403 Forbidden - PUT https://registry.npmjs.org/@trysiren%2fagent-toolkit
 ```
-Solution: Ensure you're added to the @sirenapp organization and have publish permissions.
+Solution: Ensure you're added to the @trysiren organization and have publish permissions.
 
 **2. Version Already Exists**
 ```
-npm ERR! 403 Forbidden - PUT https://registry.npmjs.org/@sirenapp%2fagent-toolkit - You cannot publish over the previously published versions
+npm ERR! 403 Forbidden - PUT https://registry.npmjs.org/@trysiren%2fagent-toolkit - You cannot publish over the previously published versions
 ```
 Solution: Bump the version number in package.json.
 
@@ -218,11 +218,11 @@ Solution: Use `npm publish --otp=123456` with your 2FA code.
 If you need to configure the npm registry:
 
 ```bash
-# Set registry for @sirenapp scope
-npm config set @sirenapp:registry https://registry.npmjs.org/
+# Set registry for @trysiren scope
+npm config set @trysiren:registry https://registry.npmjs.org/
 
 # Verify configuration
-npm config get @sirenapp:registry
+npm config get @trysiren:registry
 ```
 
 ## 📊 Post-Publication
@@ -240,13 +240,13 @@ View package information:
 
 ```bash
 # Latest version info
-npm view @sirenapp/agent-toolkit
+npm view @trysiren/agent-toolkit
 
 # All versions
-npm view @sirenapp/agent-toolkit versions --json
+npm view @trysiren/agent-toolkit versions --json
 
 # Download stats
-npm view @sirenapp/agent-toolkit --json
+npm view @trysiren/agent-toolkit --json
 ```
 
 ## 🆘 Support

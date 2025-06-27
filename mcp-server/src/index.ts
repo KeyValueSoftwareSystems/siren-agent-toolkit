@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import {SirenAgentToolkit} from '@sirenapp/agent-toolkit/mcp-server';
+import {SirenAgentToolkit} from '@trysiren/agent-toolkit/mcp-server';
 import {StdioServerTransport} from '@modelcontextprotocol/sdk/server/stdio.js';
 
 type ToolkitConfig = {

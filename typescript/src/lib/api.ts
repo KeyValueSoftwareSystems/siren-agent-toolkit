@@ -1,4 +1,4 @@
-import { SirenClient } from '@sirenapp/ts-sdk';
+import { SirenClient } from '@trysiren/node';
 import { Context } from './configuration';
 import tools, { Tool } from './tools';
 

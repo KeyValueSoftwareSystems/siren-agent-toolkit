@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { SirenClient, UserRequest } from '@sirenapp/ts-sdk';
+import { SirenClient, UserRequest } from '@trysiren/node';
 import { Context } from '../configuration';
 import type { Tool } from '../tools';
 

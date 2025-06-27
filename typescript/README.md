@@ -5,7 +5,7 @@ The Siren Agent Toolkit enables popular AI agent frameworks including OpenAI's A
 ## 🚀 Installation
 
 ```bash
-npm install @sirenapp/agent-toolkit
+npm install @trysiren/agent-toolkit
 ```
 ### Framework-Specific Examples
 

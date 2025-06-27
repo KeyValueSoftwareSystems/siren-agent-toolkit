@@ -8,10 +8,10 @@ To run the Siren MCP server using npx, use the following command:
 
 ```bash
 # To set up all available tools
-npx -y @sirenapp/mcp --tools=all --api-key=YOUR_SIREN_API_KEY
+npx -y @trysiren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY
 
 # To set up specific tools
-npx -y @sirenapp/mcp --tools=messaging.send,templates.list,workflows.trigger --api-key=YOUR_SIREN_API_KEY
+npx -y @trysiren/mcp --tools=messaging.send,templates.list,workflows.trigger --api-key=YOUR_SIREN_API_KEY
 ```
 
 Make sure to replace `YOUR_SIREN_API_KEY` with your actual Siren API key. Alternatively, you could set the `SIREN_API_KEY` in your environment variables.
