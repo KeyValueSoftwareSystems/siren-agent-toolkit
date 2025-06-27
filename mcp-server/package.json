@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.4.1",
-    "@trysiren/agent-toolkit": "^1.0.0",
+    "@trysiren/agent-toolkit": "^0.1.0",
     "colors": "^1.4.0"
   },
   "keywords": [
