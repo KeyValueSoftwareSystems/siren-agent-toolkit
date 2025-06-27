@@ -1,4 +1,4 @@
-name: Publish to npm
+name: Publish Agent Toolkit
 
 on:
   workflow_dispatch:
@@ -20,10 +20,5 @@ jobs:
 
       - name: Publish @trysiren/agent-toolkit
         run: npm publish --workspace ./typescript --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish @trysiren/mcp
-        run: npm publish --workspace ./mcp-server --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
