@@ -47,11 +47,15 @@ export function parseArgs(args: string[]): Options {
     if (arg.startsWith('--')) {
       const [key, value] = arg.slice(2).split('=');
 
-      if (key == 'tools') {
+      if (key === 'tools') {
         options.tools = value.split(',');
-      } else if (key == 'api-key') {
+      } else if (key === 'api-key') {
         options.apiKey = value;
         //TODO set context for siren via cli
+      } else if (key === 'workspace') {
+        options.workspace = value;
+      } else if (key === 'endpoint') {
+        options.endpoint = value;
       } else {
         throw new Error(
           `Invalid argument: ${key}. Accepted arguments are: ${ACCEPTED_ARGS.join(
