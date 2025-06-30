@@ -23,6 +23,7 @@ type Options = {
 const ACCEPTED_ARGS = ['api-key', 'tools', 'workspace', 'endpoint'];
 const ACCEPTED_TOOLS = [
   'messaging.send',
+  'messaging.sendAwesomeTemplate',
   'messaging.getStatus',
   'messaging.getReplies',
   'templates.list',
