@@ -3,6 +3,7 @@ import { z } from 'zod';
 import sendMessageTool from './messaging/sendMessage';
 import getMessageStatusTool from './messaging/getMessageStatus';
 import getMessageRepliesTool from './messaging/getMessageReplies';
+import sendAwesomeTemplateTool from './messaging/sendAwesomeTemplate';
 
 import listTemplatesTool from './templates/listTemplates';
 import createTemplateTool from './templates/createTemplate';
@@ -39,6 +40,7 @@ export type Tool = {
 
 const tools = (context: Context): Tool[] => [
   sendMessageTool(context),
+  sendAwesomeTemplateTool(context),
   getMessageStatusTool(context),
   getMessageRepliesTool(context),
   
