@@ -64,6 +64,7 @@ The Siren Agent Toolkit provides the following tools for AI agents:
 
 ### Messaging Tools
 - **`send_message`** - Send messages via email, SMS, Slack, etc.
+- **`send_awesome_template`** - Send messages using awesome templates 
 - **`get_message_status`** - Check delivery status of sent messages
 - **`get_message_replies`** - Retrieve replies to sent messages
 
@@ -78,8 +79,6 @@ The Siren Agent Toolkit provides the following tools for AI agents:
 - **`add_user`** - Create or update user profiles
 - **`update_user`** - Modify user information
 - **`delete_user`** - Remove users
-- **`get_user`** - Retrieve user details
-- **`list_users`** - Get all users with pagination
 
 ### Workflow Automation
 - **`trigger_workflow`** - Execute workflows immediately
