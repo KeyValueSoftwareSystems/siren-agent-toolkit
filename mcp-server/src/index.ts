@@ -41,6 +41,27 @@ const ACCEPTED_TOOLS = [
   'webhooks.configureInbound',
 ];
 
+// Mapping from MCP tool names to their actual actions configuration
+const TOOL_ACTIONS_MAP: { [key: string]: { [resource: string]: { [action: string]: boolean } } } = {
+  'messaging.send': { messaging: { create: true } },
+  'messaging.sendAwesomeTemplate': { messaging: { create: true } },
+  'messaging.getStatus': { messaging: { read: true } },
+  'messaging.getReplies': { messaging: { read: true } },
+  'templates.list': { templates: { read: true } },
+  'templates.create': { templates: { create: true } },
+  'templates.update': { templates: { update: true } },
+  'templates.delete': { templates: { delete: true } },
+  'templates.publish': { templates: { update: true } },
+  'users.add': { users: { create: true } },
+  'users.update': { users: { update: true } },
+  'users.delete': { users: { delete: true } },
+  'workflows.trigger': { workflows: { trigger: true } },
+  'workflows.triggerBulk': { workflows: { trigger: true } },
+  'workflows.schedule': { workflows: { schedule: true } },
+  'webhooks.configureNotification': { webhooks: { create: true } },
+  'webhooks.configureInbound': { webhooks: { create: true } },
+};
+
 export function parseArgs(args: string[]): Options {
   const options: Options = {};
 
@@ -111,19 +132,27 @@ export async function main() {
 
   if (selectedTools.includes('all')) {
     ACCEPTED_TOOLS.forEach((tool) => {
-      const [resource, action] = tool.split('.');
-      configuration.actions[resource] = {
-        ...configuration.actions[resource],
-        [action]: true,
-      };
+      const toolActions = TOOL_ACTIONS_MAP[tool];
+      if (toolActions) {
+        Object.keys(toolActions).forEach((resource) => {
+          configuration.actions[resource] = {
+            ...configuration.actions[resource],
+            ...toolActions[resource],
+          };
+        });
+      }
     });
   } else {
     selectedTools.forEach((tool: any) => {
-      const [resource, action] = tool.split('.');
-      configuration.actions[resource] = {
-        ...configuration.actions[resource],
-        [action]: true,
-      };
+      const toolActions = TOOL_ACTIONS_MAP[tool];
+      if (toolActions) {
+        Object.keys(toolActions).forEach((resource) => {
+          configuration.actions[resource] = {
+            ...configuration.actions[resource],
+            ...toolActions[resource],
+          };
+        });
+      }
     });
   }
 
