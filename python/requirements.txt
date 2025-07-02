@@ -1,0 +1,19 @@
+# Core dependencies
+siren-ai>=0.2.0
+pydantic>=2.0.0
+
+# Optional dependencies for AI frameworks
+openai>=1.0.0
+langchain>=0.1.0
+langchain-core>=0.1.0
+crewai>=0.1.0
+crewai-tools>=0.1.0
+
+# Development dependencies
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+mypy>=1.0.0
+python-dotenv>=1.0.0
