@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { SirenClient, ProviderCode, RecipientChannel } from '@trysiren/node';
+
 import { Context } from '../configuration';
 import type { Tool } from '../tools';
 
@@ -10,7 +11,7 @@ const sendMessageSchema = z.object({
       'Identifier for the recipient (e.g., Slack user ID, email address)'
     ),
   channel: z
-    .nativeEnum(RecipientChannel)
+    .string()
     .describe(
       'The channel to send the message through (e.g., "SLACK", "EMAIL")'
     ),
@@ -47,7 +48,7 @@ export const sendMessage = async (
   try {
     const messagePayload = {
       recipientValue: params.recipient_value,
-      channel: params.channel,
+      channel: params.channel as RecipientChannel,
       body: params.body,
       subject: params.subject,
       templateName: params.template_name,
