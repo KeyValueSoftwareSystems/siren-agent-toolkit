@@ -47,7 +47,7 @@ export const sendMessage = async (
   try {
     const messagePayload = {
       recipientValue: params.recipient_value,
-      channel: params.channel as RecipientChannel,
+      channel: params.channel,
       body: params.body,
       subject: params.subject,
       templateName: params.template_name,
