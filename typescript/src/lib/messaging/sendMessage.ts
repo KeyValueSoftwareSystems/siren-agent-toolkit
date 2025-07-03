@@ -10,7 +10,7 @@ const sendMessageSchema = z.object({
       'Identifier for the recipient (e.g., Slack user ID, email address)'
     ),
   channel: z
-    .string()
+    .nativeEnum(RecipientChannel)
     .describe(
       'The channel to send the message through (e.g., "SLACK", "EMAIL")'
     ),
