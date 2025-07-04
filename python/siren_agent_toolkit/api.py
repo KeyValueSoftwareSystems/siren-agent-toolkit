@@ -10,8 +10,6 @@ class SirenAPI:
         self.client = SirenClient(
             api_key=api_key,
             env=context.get("env") if context else None,
-            base_url=context.get("base_url") if context else None,
-            timeout=context.get("timeout") if context else None,
         )
 
     def run(self, method: str, params: Dict[str, Any]) -> Any:

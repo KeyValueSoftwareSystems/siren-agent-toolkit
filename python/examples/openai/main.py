@@ -2,6 +2,8 @@
 
 import asyncio
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from openai import AsyncOpenAI
 from siren_agent_toolkit.openai import SirenAgentToolkit
 
@@ -52,7 +54,7 @@ async def main():
         },
         {
             "role": "user",
-            "content": 'Send a welcome message to user@example.com via EMAIL saying "Welcome to our platform!"',
+            "content": 'Send a welcome message to U08FK1G6DGE via SLACK saying "Welcome to our platform!"',
         },
     ]
     

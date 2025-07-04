@@ -1,6 +1,8 @@
 """Example of using Siren Agent Toolkit with LangChain."""
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from langchain_openai import ChatOpenAI
 from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain_core.prompts import ChatPromptTemplate

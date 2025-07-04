@@ -1,6 +1,8 @@
 """Example of using Siren Agent Toolkit with CrewAI."""
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
 from siren_agent_toolkit.crewai import SirenAgentToolkit
@@ -54,7 +56,7 @@ def main():
     
     # Create task
     send_welcome_task = Task(
-        description='Send a welcome message to user@example.com via EMAIL saying "Welcome to our platform!"',
+        description='Send a welcome message to U08FK1G6DGE via SLACK saying "Welcome to our platform!"',
         agent=notification_agent,
         expected_output="Confirmation that the welcome message was sent successfully",
     )

@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Type
 from langchain.tools.base import BaseTool
 from pydantic import BaseModel
 
@@ -11,7 +11,7 @@ class SirenTool(BaseTool):
     
     siren_api: SirenAPI
     method: str
-    args_schema: BaseModel
+    args_schema: Type[BaseModel]
     actions: Dict[str, Any]
     
     class Config:

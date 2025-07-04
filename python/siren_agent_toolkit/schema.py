@@ -4,10 +4,10 @@ from typing import Any, Dict, List, Literal, Optional
 
 # Messaging schemas
 class SendMessage(BaseModel):
-    recipient_type: Literal["user_id", "direct"] = Field(description="The type of recipient")
     recipient_value: str = Field(description="The identifier for the recipient (e.g., Slack user ID, email address)")
     channel: str = Field(description="The channel to send the message through (e.g., 'SLACK', 'EMAIL')")
     body: Optional[str] = Field(None, description="Message body text (required if no template)")
+    subject: Optional[str] = Field(None, description="Message subject text (required if no template)")
     template_name: Optional[str] = Field(None, description="Template name (required if no body)")
     template_variables: Optional[Dict[str, Any]] = Field(None, description="Template variables for template-based messages")
 
