@@ -7,36 +7,49 @@ const sendMessageSchema = z.object({
   recipient_value: z
     .string()
     .describe(
-      'Identifier for the recipient (e.g., Slack user ID, email address)'
+      'Unique identifier for the recipient, such as a Slack user ID or an email address.'
     ),
   channel: z
     .nativeEnum(RecipientChannel)
     .describe(
-      'The channel to send the message through (e.g., "SLACK", "EMAIL")'
+      'The communication channel to use for sending the message, e.g., "SLACK" or "EMAIL".'
     ),
   body: z
     .string()
     .optional()
-    .describe('Message body text (required if no template)'),
+    .describe(
+      'The content of the message. Required if no template is specified.'
+    ),
   subject: z
     .string()
     .optional()
     .describe(
-      'Subject line for the message (optional, required for email with body)'
+      'The subject line of the message. Optional, but required for email messages that include a body.'
     ),
   template_name: z
     .string()
     .optional()
-    .describe('Template name (required if no body)'),
+    .describe(
+      'The name of the template to use for the message. Required if no body is provided.'
+    ),
   template_variables: z
     .record(z.any())
     .optional()
-    .describe('Template variables for template-based messages'),
-  provider_name: z.string().optional().describe('Provider integration name'),
+    .describe(
+      'Template variables for template-based messages.'
+    ),
+  provider_name: z
+    .string()
+    .optional()
+    .describe(
+      'The name of the provider integration to use for sending the message. Optional; defaults to the default provider if not specified.'
+    ),
   provider_code: z
     .nativeEnum(ProviderCode)
     .optional()
-    .describe('Provider integration code'),
+    .describe(
+      'The code of the provider integration to use for sending the message. Optional; defaults to the default provider if not specified.'
+    ),
 });
 
 export const sendMessage = async (
