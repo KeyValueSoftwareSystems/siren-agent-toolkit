@@ -1,6 +1,6 @@
 {
   "name": "@trysiren/mcp",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "homepage": "https://github.com/KeyValueSoftwareSystems/siren-agent-toolkit/tree/main/mcp-server",
   "description": "A command line tool for setting up Siren MCP server",
   "bin": "dist/index.js",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.4.1",
-    "@trysiren/agent-toolkit": "^0.1.0",
+    "@trysiren/agent-toolkit": "^0.1.2",
     "colors": "^1.4.0"
   },
   "keywords": [

@@ -1,15 +1,29 @@
 import { z } from 'zod';
-import { SirenClient, ProviderCode } from '@trysiren/node';
+import { SirenClient, ProviderCode, RecipientChannel } from '@trysiren/node';
 import { Context } from '../configuration';
 import type { Tool } from '../tools';
 
 const sendAwesomeSchema = z.object({
-  recipient_value: z.string().describe('Identifier for the recipient (e.g., Slack user ID, email address)'),
-  channel: z.string().describe('The channel to send the message through (e.g., "SLACK", "EMAIL")'),
+  recipient_value: z
+    .string()
+    .describe(
+      'Identifier for the recipient (e.g., Slack user ID, email address)'
+    ),
+  channel: z
+    .nativeEnum(RecipientChannel)
+    .describe(
+      'The channel to send the message through (e.g., "SLACK", "EMAIL")'
+    ),
   template_identifier: z.string().describe('Awesome template path/identifier'),
-  template_variables: z.record(z.any()).optional().describe('Variables for the template'),
+  template_variables: z
+    .record(z.any())
+    .optional()
+    .describe('Variables for the template'),
   provider_name: z.string().optional().describe('Provider integration name'),
-  provider_code: z.nativeEnum(ProviderCode).optional().describe('Provider integration code'),
+  provider_code: z
+    .nativeEnum(ProviderCode)
+    .optional()
+    .describe('Provider integration code'),
 });
 
 export const sendAwesomeTemplate = async (
@@ -18,13 +32,16 @@ export const sendAwesomeTemplate = async (
   params: z.infer<typeof sendAwesomeSchema>
 ) => {
   try {
+    const messagePayload = {
+      recipientValue: params.recipient_value,
+      channel: params.channel,
+      templateIdentifier: params.template_identifier,
+      templateVariables: params.template_variables,
+      providerName: params.provider_name,
+      providerCode: params.provider_code,
+    };
     const notificationId = await sirenClient.message.sendAwesomeTemplate(
-      params.recipient_value,
-      params.channel,
-      params.template_identifier,
-      params.template_variables,
-      params.provider_name,
-      params.provider_code
+      messagePayload
     );
     return { notificationId };
   } catch (error) {
@@ -39,7 +56,8 @@ export const sendAwesomeTemplate = async (
 const tool = (context: Context): Tool => ({
   method: 'send_awesome_template',
   name: 'Send Awesome Template Message',
-  description: 'Send a message using an awesome template identifier via a chosen channel',
+  description:
+    'Send a message using an awesome template identifier via a chosen channel',
   parameters: sendAwesomeSchema,
   actions: {
     messaging: {
@@ -49,4 +67,4 @@ const tool = (context: Context): Tool => ({
   execute: sendAwesomeTemplate,
 });
 
-export default tool; 
+export default tool;

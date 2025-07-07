@@ -1,16 +1,55 @@
 import { z } from 'zod';
-import { SirenClient, ProviderCode } from '@trysiren/node';
+import { SirenClient, ProviderCode, RecipientChannel } from '@trysiren/node';
 import { Context } from '../configuration';
 import type { Tool } from '../tools';
 
 const sendMessageSchema = z.object({
-  recipient_value: z.string().describe('Identifier for the recipient (e.g., Slack user ID, email address)'),
-  channel: z.string().describe('The channel to send the message through (e.g., "SLACK", "EMAIL")'),
-  body: z.string().optional().describe('Message body text (required if no template)'),
-  template_name: z.string().optional().describe('Template name (required if no body)'),
-  template_variables: z.record(z.any()).optional().describe('Template variables for template-based messages'),
-  provider_name: z.string().optional().describe('Provider integration name'),
-  provider_code: z.nativeEnum(ProviderCode).optional().describe('Provider integration code'),
+  recipient_value: z
+    .string()
+    .describe(
+      'Unique identifier for the recipient, such as a Slack user ID or an email address.'
+    ),
+  channel: z
+    .nativeEnum(RecipientChannel)
+    .describe(
+      'The communication channel to use for sending the message, e.g., "SLACK" or "EMAIL".'
+    ),
+  body: z
+    .string()
+    .optional()
+    .describe(
+      'The content of the message. Required if no template is specified.'
+    ),
+  subject: z
+    .string()
+    .optional()
+    .describe(
+      'The subject line of the message. Optional, but required for email messages that include a body.'
+    ),
+  template_name: z
+    .string()
+    .optional()
+    .describe(
+      'The name of the template to use for the message. Required if no body is provided.'
+    ),
+  template_variables: z
+    .record(z.any())
+    .optional()
+    .describe(
+      'Template variables for template-based messages.'
+    ),
+  provider_name: z
+    .string()
+    .optional()
+    .describe(
+      'The name of the provider integration to use for sending the message. Optional; defaults to the default provider if not specified.'
+    ),
+  provider_code: z
+    .nativeEnum(ProviderCode)
+    .optional()
+    .describe(
+      'The code of the provider integration to use for sending the message. Optional; defaults to the default provider if not specified.'
+    ),
 });
 
 export const sendMessage = async (
@@ -19,22 +58,24 @@ export const sendMessage = async (
   params: z.infer<typeof sendMessageSchema>
 ) => {
   try {
-    const notificationId = await sirenClient.message.send(
-      params.recipient_value,
-      params.channel,
-      params.body,
-      params.template_name,
-      params.template_variables,
-      params.provider_name,
-      params.provider_code
-    );
-    
+    const messagePayload = {
+      recipientValue: params.recipient_value,
+      channel: params.channel,
+      body: params.body,
+      subject: params.subject,
+      templateName: params.template_name,
+      templateVariables: params.template_variables,
+      providerName: params.provider_name,
+      providerCode: params.provider_code,
+    };
+    const notificationId = await sirenClient.message.send(messagePayload);
+
     return { notificationId };
   } catch (error) {
     console.error('Failed to send message:', error);
     return {
       error: 'Failed to send message',
-      details: error instanceof Error ? error.message : String(error)
+      details: error instanceof Error ? error.message : String(error),
     };
   }
 };
@@ -42,7 +83,8 @@ export const sendMessage = async (
 const tool = (context: Context): Tool => ({
   method: 'send_message',
   name: 'Send Message',
-  description: 'Send a message either using a template or directly to a recipient via a chosen channel',
+  description:
+    'Send a message either using a template or directly to a recipient via a chosen channel',
   parameters: sendMessageSchema,
   actions: {
     messaging: {
