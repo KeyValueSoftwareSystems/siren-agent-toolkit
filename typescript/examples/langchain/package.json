@@ -8,7 +8,7 @@
     "dev": "tsx --watch index.ts"
   },
   "dependencies": {
-    "@trysiren/agent-toolkit": "^0.1.0",
+    "@trysiren/agent-toolkit": "^0.1.2",
     "@langchain/core": "^0.1.0",
     "@langchain/openai": "^0.0.15",
     "dotenv": "^16.4.5",
