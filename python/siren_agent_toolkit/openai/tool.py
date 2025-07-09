@@ -1,6 +1,4 @@
-import json
-from typing import Any, Dict, Callable
-from pydantic import BaseModel
+from typing import Any, Dict
 
 from ..api import SirenAPI
 

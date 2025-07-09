@@ -45,6 +45,9 @@ class SirenAgentToolkit:
         tool = self._tool_methods[function_name]
         result = await tool.execute(**function_args)
         
+        if not isinstance(result, (str, dict, list)):
+            result = result.__dict__  # Convert object to dictionary
+        
         return {
             "tool_call_id": tool_call.id,
             "role": "tool",

@@ -51,9 +51,11 @@ class SirenAPI:
         elif method == "delete_user":
             return self.client.user.delete(params["unique_id"])
         elif method == "get_user":
-            return self.client.user.get(params["unique_id"])
+            raise NotImplementedError("get_user is not implemented")
+            #return self.client.user.get(params["unique_id"])
         elif method == "list_users":
-            return self.client.user.list(**params)
+            raise NotImplementedError("list_users is not implemented")
+            #return self.client.user.list(**params)
         
         # Workflow methods
         elif method == "trigger_workflow":

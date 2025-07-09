@@ -11,7 +11,7 @@ class SirenTool(BaseTool):
     
     siren_api: SirenAPI
     method: str
-    args_schema: Type[BaseModel]
+    args_schema = None
     actions: Dict[str, Any]
     
     class Config:
@@ -31,7 +31,9 @@ class SirenTool(BaseTool):
     def _run(self, **kwargs) -> Any:
         """Execute the tool synchronously."""
         # Validate parameters using Pydantic schema
+        print("self.args_schema ----->>>", self.args_schema)
         validated_params = self.args_schema(**kwargs)
+        print("validated_params", validated_params)
         
         # Execute the tool using the Siren API
         result = self.siren_api.run(self.method, validated_params.dict())

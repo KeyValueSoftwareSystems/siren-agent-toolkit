@@ -52,13 +52,14 @@ def main():
         tools=siren_toolkit.get_tools(),
         llm=llm,
         verbose=True,
+        max_retry_limit=0,  # Disable retries for simplicity
     )
     
     # Create task
     send_welcome_task = Task(
-        description='Send a welcome message to U08FK1G6DGE via SLACK saying "Welcome to our platform!"',
+        description='send welcome message, "Welcome to our service!" to user@example.com via EMAIL',
         agent=notification_agent,
-        expected_output="Confirmation that the welcome message was sent successfully",
+        expected_output="confirm it returns request id and workflowExecutionId",
     )
     
     # Create crew

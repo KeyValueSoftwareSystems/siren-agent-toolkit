@@ -1,6 +1,6 @@
 import json
 from typing import Any, Dict, Type
-from crewai_tools import BaseTool
+from crewai.tools import BaseTool
 from pydantic import BaseModel
 
 from ..api import SirenAPI
@@ -27,6 +27,10 @@ class SirenTool(BaseTool):
         
         # Execute the tool using the Siren API
         result = self.siren_api.run(self.method, validated_params.dict())
+        
+        if hasattr(result, '__dict__'):
+            result = result.__dict__
+    
         
         # Return result as JSON string for CrewAI compatibility
         return json.dumps(result) if not isinstance(result, str) else result
