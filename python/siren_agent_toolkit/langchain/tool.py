@@ -11,7 +11,7 @@ class SirenTool(BaseTool):
     
     siren_api: SirenAPI
     method: str
-    args_schema = None
+    args_schema: Type[BaseModel]
     actions: Dict[str, Any]
     
     class Config:

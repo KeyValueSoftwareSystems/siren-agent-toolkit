@@ -119,7 +119,7 @@ class ScheduleWorkflow(BaseModel):
     start_date: str = Field(description="Start date for the schedule in 'YYYY-MM-DD' format")
     workflow_type: str = Field(description="Type of the workflow schedule , e.g., 'ONCE', 'DAILY'")
     workflow_id: str = Field(description="ID of the workflow to schedule")
-    input_data: Dict[str, Any] = Field(description="Input data for the workflow")
+    input_data: Dict[str, Any] = Field(description="Input data for the workflow", default_factory=dict)
     end_date: Optional[str] = Field(None, description="End date for the schedule in 'YYYY-MM-DD' format")
 
 
