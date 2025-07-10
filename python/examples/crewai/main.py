@@ -52,7 +52,6 @@ def main():
         tools=siren_toolkit.get_tools(),
         llm=llm,
         verbose=True,
-        max_retry_limit=0,  # Disable retries for simplicity
     )
     
     # Create task

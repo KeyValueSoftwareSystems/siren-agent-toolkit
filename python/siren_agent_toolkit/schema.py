@@ -108,7 +108,7 @@ class TriggerWorkflow(BaseModel):
 
 class TriggerWorkflowBulk(BaseModel):
     workflow_name: str = Field(description="Name of the workflow to trigger")
-    notify: List[Dict[str, Any]] = Field(description="A list of notification objects, each representing specific data for a workflow execution")
+    notify: List[Dict[str, Any]] = Field(default_factory=list, description="A list of notification objects, each representing specific data for a workflow execution")
     data: Optional[Dict[str, Any]] = Field(None, description="Common data that will be used across all workflow executions")
 
 
