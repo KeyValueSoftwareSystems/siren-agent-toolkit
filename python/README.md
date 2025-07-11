@@ -2,26 +2,35 @@
 
 The **Siren Agent Toolkit** provides a unified Python interface and agent tools for interacting with the Siren MCP (Model Context Protocol) platform. It enables messaging, template management, user management, workflow automation, and webhook configuration, with seamless integration into popular agent frameworks like LangChain, OpenAI, and CrewAI.
 
----
-
 ## Features & Capabilities
 
-- **Messaging**
-  - Send messages via various channels (Slack, Email, etc.)
-  - Retrieve message status and replies
-- **Templates**
-  - List, create, update, delete, and publish notification templates
-- **Users**
-  - Add, update, delete, retrieve, and list users
-- **Workflows**
-  - Trigger workflows (single or bulk)
-  - Schedule workflows for future or recurring execution
-- **Webhooks**
-  - Configure webhooks for status updates and inbound messages
-- **Integrations**
-  - Use Siren tools within LangChain, OpenAI, and CrewAI agent environments
+### Messaging
+- Send messages via various channels (Email, SMS, WhatsApp, Slack, Teams, Discord, Line, etc.)
+- Retrieve message status and replies
+- Support for template-based and direct messaging
 
----
+### Templates
+- List, create, update, delete, and publish notification templates
+- Create and manage channel-specific templates
+- Support for template variables and versioning
+
+### Users
+- Add, update, and delete users
+- Manage user attributes and contact information
+
+### Workflows
+- Trigger workflows (single or bulk operations)
+- Schedule workflows for future or recurring execution
+- Pass custom data to workflow executions
+
+### Webhooks
+- Configure webhooks for status updates
+- Set up inbound message webhooks
+- Optional webhook verification with secrets
+
+## 📋 Requirements
+
+- A Siren API key (get one from [Siren Dashboard](https://app.trysiren.io/configuration))
 
 ## Installation
 
@@ -29,13 +38,12 @@ The **Siren Agent Toolkit** provides a unified Python interface and agent tools 
 pip install siren-agent-toolkit
 ```
 
-Or, for local development:
+For local development:
 
 ```bash
+# From the python/ directory
 pip install -e .
 ```
-
----
 
 ## Usage
 
@@ -44,70 +52,67 @@ pip install -e .
 ```python
 from siren_agent_toolkit.api import SirenAPI
 
+# Initialize with your API key
 api = SirenAPI(api_key="YOUR_API_KEY")
 
-# Send a message
-data = {
-    "recipient_type": "user_id",
-    "recipient_value": "user-123",
+# Send a simple email message
+result = api.run("send_message", {
+    "recipient_value": "user@example.com",
     "channel": "EMAIL",
-    "body": "Hello from Siren!"
-}
-result = api.run("send_message", data)
+    "subject": "Important Update",
+    "body": "Hello from Siren! This is an important notification."
+})
 print(result)
 ```
 
----
-
-## Integrations
-
-- **LangChain**: Use Siren tools as LangChain tools/agents
-- **OpenAI**: Integrate Siren actions into OpenAI agent workflows
-- **CrewAI**: Use Siren tools in CrewAI agent environments
-
-See the `examples/` directory for integration demos.
-
----
-
 ## Examples
+
+Complete working examples are available in the `examples/` directory:
 
 - `examples/langchain/main.py` — Using Siren tools with LangChain
 - `examples/openai/main.py` — Using Siren tools with OpenAI
 - `examples/crewai/main.py` — Using Siren tools with CrewAI
 
----
-
 ## Development
 
-- All tool schemas are defined with Pydantic for validation.
-- See `tests/` for unit tests.
+### Configuration
 
----
+The toolkit supports flexible configuration options:
 
-## Development Build
+```python
+from siren_agent_toolkit.api import SirenAPI
 
-To build the package locally during development:
+api = SirenAPI(
+    api_key="YOUR_API_KEY",
+    context={"env": "production"}  # Optional environment configuration
+)
+```
+
+### Building Locally
 
 ```bash
 # From the python/ directory
 pip install -e .
-# (Optional) Install development dependencies
+# Install development dependencies
 pip install -r requirements.txt
 ```
 
-If you make changes to the code, the editable install (`-e .`) ensures your changes are reflected immediately.
-
-To run tests:
+### Running Tests
 
 ```bash
 pytest tests/
 ```
 
----
+### Running Examples
 
-## Running Examples
+Set required environment variables first:
 
-Each integration has an example script in the `examples/` directory. To run them:
+```bash
+export SIREN_API_KEY=your_api_key
+export OPENAI_API_KEY=your_openai_key  # For examples using OpenAI
+```
+
+Then run the examples:
 
 ```bash
 # LangChain example
@@ -120,10 +125,6 @@ python examples/openai/main.py
 python examples/crewai/main.py
 ```
 
-Make sure to set any required environment variables (such as your API key) as needed by the examples. Check the top of each example script for details.
-
----
-
 ## License
 
-MIT 
+MIT
