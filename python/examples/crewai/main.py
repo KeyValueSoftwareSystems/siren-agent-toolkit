@@ -5,17 +5,17 @@ from dotenv import load_dotenv
 load_dotenv()
 from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
-from siren_agent_toolkit.crewai import SirenAgentToolkit
+from agenttoolkit.crewai import SirenAgentToolkit
 
 
 def main():
-    # Initialize LLM
+
     llm = ChatOpenAI(
         model="gpt-4",
         api_key=os.getenv("OPENAI_API_KEY"),
     )
     
-    # Initialize Siren toolkit
+
     siren_toolkit = SirenAgentToolkit(
         api_key=os.getenv("SIREN_API_KEY"),
         configuration={
@@ -44,7 +44,7 @@ def main():
         },
     )
     
-    # Create agent with Siren tools
+
     notification_agent = Agent(
         role="Notification Manager",
         goal="Send notifications and manage notification templates using Siren",
@@ -54,21 +54,21 @@ def main():
         verbose=True,
     )
     
-    # Create task
+
     send_welcome_task = Task(
         description='send welcome message, "Welcome to our service!" to user@example.com via EMAIL',
         agent=notification_agent,
         expected_output="confirm it returns request id and workflowExecutionId",
     )
     
-    # Create crew
+
     crew = Crew(
         agents=[notification_agent],
         tasks=[send_welcome_task],
         verbose=True,
     )
     
-    # Execute
+
     result = crew.kickoff()
     print(f"Result: {result}")
 

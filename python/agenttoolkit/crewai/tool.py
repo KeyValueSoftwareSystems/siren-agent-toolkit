@@ -30,13 +30,13 @@ class SirenTool(BaseTool):
         method = object.__getattribute__(self, "_method")
         tool_config = object.__getattribute__(self, "_tool_config")
         
-        # Validate parameters using Pydantic schema
+
         validated_params = tool_config["args_schema"](**kwargs) 
         result = siren_api.run(method, validated_params.model_dump())
         
-        # Convert result to dict if it has a __dict__ attribute
+
         if hasattr(result, '__dict__'):
             result = result.__dict__
      
-        # Return result as JSON string for CrewAI compatibility
+
         return json.dumps(result) if not isinstance(result, str) else result

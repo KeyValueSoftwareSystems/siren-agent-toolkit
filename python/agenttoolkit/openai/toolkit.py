@@ -13,19 +13,16 @@ class SirenAgentToolkit:
     def __init__(self, api_key: str, configuration: Optional[Configuration] = None):
         self.siren_api = SirenAPI(api_key, configuration.get("context") if configuration else None)
         
-        # Filter tools based on configuration
         filtered_tools = [
             tool for tool in tools 
             if is_tool_allowed(tool, configuration)
         ]
         
-        # Create SirenTool instances
         self._tools = [
             SirenTool(self.siren_api, tool_config)
             for tool_config in filtered_tools
         ]
         
-        # Create method lookup for tool execution
         self._tool_methods = {
             tool.method: tool for tool in self._tools
         }
@@ -46,7 +43,7 @@ class SirenAgentToolkit:
         result = await tool.execute(**function_args)
         
         if not isinstance(result, (str, dict, list)):
-            result = result.__dict__  # Convert object to dictionary
+            result = result.__dict__ 
         
         return {
             "tool_call_id": tool_call.id,

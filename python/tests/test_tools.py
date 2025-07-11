@@ -1,7 +1,7 @@
 """Tests for tools module."""
 
 import pytest
-from siren_agent_toolkit.tools import tools
+from agenttoolkit.tools import tools
 
 
 def test_tools_list_not_empty():
@@ -16,6 +16,13 @@ def test_tools_have_required_fields():
     for tool in tools:
         for field in required_fields:
             assert field in tool, f"Tool {tool.get('method', 'unknown')} missing field {field}"
+        
+        # Check that actions is properly structured
+        assert isinstance(tool["actions"], dict), f"Tool {tool['method']} actions must be a dict"
+        for resource, permissions in tool["actions"].items():
+            assert isinstance(permissions, dict), f"Tool {tool['method']} permissions must be a dict"
+            for permission, value in permissions.items():
+                assert isinstance(value, bool), f"Tool {tool['method']} permission value must be boolean"
 
 
 def test_messaging_tools_exist():
@@ -28,6 +35,17 @@ def test_messaging_tools_exist():
     assert "send_message" in tool_methods
     assert "get_message_status" in tool_methods
     assert "get_message_replies" in tool_methods
+    
+    # Verify permissions
+    for tool in messaging_tools:
+        if tool["method"] == "send_message":
+            assert tool["actions"]["messaging"].get("create") is True
+        elif tool["method"] in ["get_message_status", "get_message_replies"]:
+            assert tool["actions"]["messaging"].get("read") is True
+            
+    # Verify schemas
+    for tool in messaging_tools:
+        assert hasattr(tool["args_schema"], "model_fields"), f"Tool {tool['method']} schema missing model_fields"
 
 
 def test_template_tools_exist():
@@ -42,6 +60,21 @@ def test_template_tools_exist():
     assert "update_template" in tool_methods
     assert "delete_template" in tool_methods
     assert "publish_template" in tool_methods
+    
+    # Verify permissions
+    for tool in template_tools:
+        if tool["method"] == "list_templates":
+            assert tool["actions"]["templates"].get("read") is True
+        elif tool["method"] == "create_template":
+            assert tool["actions"]["templates"].get("create") is True
+        elif tool["method"] in ["update_template", "publish_template"]:
+            assert tool["actions"]["templates"].get("update") is True
+        elif tool["method"] == "delete_template":
+            assert tool["actions"]["templates"].get("delete") is True
+            
+    # Verify schemas
+    for tool in template_tools:
+        assert hasattr(tool["args_schema"], "model_fields"), f"Tool {tool['method']} schema missing model_fields"
 
 
 def test_user_tools_exist():
@@ -54,6 +87,23 @@ def test_user_tools_exist():
     assert "add_user" in tool_methods
     assert "update_user" in tool_methods
     assert "delete_user" in tool_methods
+    assert "get_user" in tool_methods
+    assert "list_users" in tool_methods
+    
+    # Verify permissions
+    for tool in user_tools:
+        if tool["method"] == "add_user":
+            assert tool["actions"]["users"].get("create") is True
+        elif tool["method"] == "update_user":
+            assert tool["actions"]["users"].get("update") is True
+        elif tool["method"] == "delete_user":
+            assert tool["actions"]["users"].get("delete") is True
+        elif tool["method"] in ["get_user", "list_users"]:
+            assert tool["actions"]["users"].get("read") is True
+            
+    # Verify schemas
+    for tool in user_tools:
+        assert hasattr(tool["args_schema"], "model_fields"), f"Tool {tool['method']} schema missing model_fields"
 
 
 def test_workflow_tools_exist():
@@ -66,6 +116,17 @@ def test_workflow_tools_exist():
     assert "trigger_workflow" in tool_methods
     assert "trigger_workflow_bulk" in tool_methods
     assert "schedule_workflow" in tool_methods
+    
+    # Verify permissions
+    for tool in workflow_tools:
+        if tool["method"] in ["trigger_workflow", "trigger_workflow_bulk"]:
+            assert tool["actions"]["workflows"].get("trigger") is True
+        elif tool["method"] == "schedule_workflow":
+            assert tool["actions"]["workflows"].get("schedule") is True
+            
+    # Verify schemas
+    for tool in workflow_tools:
+        assert hasattr(tool["args_schema"], "model_fields"), f"Tool {tool['method']} schema missing model_fields"
 
 
 def test_webhook_tools_exist():
@@ -77,3 +138,11 @@ def test_webhook_tools_exist():
     tool_methods = [tool["method"] for tool in webhook_tools]
     assert "configure_notification_webhooks" in tool_methods
     assert "configure_inbound_webhooks" in tool_methods
+    
+    # Verify permissions
+    for tool in webhook_tools:
+        assert tool["actions"]["webhooks"].get("create") is True
+            
+    # Verify schemas
+    for tool in webhook_tools:
+        assert hasattr(tool["args_schema"], "model_fields"), f"Tool {tool['method']} schema missing model_fields"

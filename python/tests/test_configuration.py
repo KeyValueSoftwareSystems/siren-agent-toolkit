@@ -1,7 +1,7 @@
 """Tests for configuration module."""
 
 import pytest
-from siren_agent_toolkit.configuration import is_tool_allowed
+from agenttoolkit.configuration import is_tool_allowed
 
 
 def test_is_tool_allowed_no_configuration():

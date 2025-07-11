@@ -5,16 +5,16 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 from openai import AsyncOpenAI
-from siren_agent_toolkit.openai import SirenAgentToolkit
+from agenttoolkit.openai import SirenAgentToolkit
 
 
 async def main():
-    # Initialize OpenAI client
+
     openai_client = AsyncOpenAI(
         api_key=os.getenv("OPENAI_API_KEY")
     )
     
-    # Initialize Siren toolkit
+
     siren_toolkit = SirenAgentToolkit(
         api_key=os.getenv("SIREN_API_KEY"),
         configuration={
@@ -46,7 +46,7 @@ async def main():
         },
     )
     
-    # Create messages
+
     messages = [
         {
             "role": "system",
@@ -58,7 +58,7 @@ async def main():
         },
     ]
     
-    # Get completion with tools
+
     response = await openai_client.chat.completions.create(
         model="gpt-4",
         messages=messages,
@@ -68,7 +68,7 @@ async def main():
     message = response.choices[0].message
     
     if message.tool_calls:
-        # Handle tool calls
+
         tool_results = []
         for tool_call in message.tool_calls:
             result = await siren_toolkit.handle_tool_call(tool_call)

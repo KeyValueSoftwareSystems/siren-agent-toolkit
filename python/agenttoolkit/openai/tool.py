@@ -27,10 +27,10 @@ class SirenTool:
 
     async def execute(self, **kwargs) -> Any:
         """Execute the tool with the given parameters."""
-        # Validate parameters using Pydantic schema
+
         validated_params = self.args_schema(**kwargs)
         
-        # Execute the tool using the Siren API
+
         result = self.siren_api.run(self.method, validated_params.model_dump())
         
         return result

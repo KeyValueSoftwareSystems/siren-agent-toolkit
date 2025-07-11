@@ -12,13 +12,11 @@ class SirenAgentToolkit:
     def __init__(self, api_key: str, configuration: Optional[Configuration] = None):
         self.siren_api = SirenAPI(api_key, configuration.get("context") if configuration else None)
         
-        # Filter tools based on configuration
         filtered_tools = [
             tool for tool in tools 
             if is_tool_allowed(tool, configuration)
         ]
         
-        # Create SirenTool instances
         self._tools = [
             SirenTool(self.siren_api, tool_config)
             for tool_config in filtered_tools
