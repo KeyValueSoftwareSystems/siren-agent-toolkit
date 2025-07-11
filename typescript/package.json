@@ -1,6 +1,6 @@
 {
   "name": "@trysiren/agent-toolkit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Agent toolkit for Siren notification platform",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
