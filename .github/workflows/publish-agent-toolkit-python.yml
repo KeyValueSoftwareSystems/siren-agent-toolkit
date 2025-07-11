@@ -1,0 +1,31 @@
+name: Publish Agent Toolkit (Python)
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*"        # e.g. v1.2.3
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"   # choose what you like
+
+      - name: Install build tools
+        run: python -m pip install --upgrade build twine
+
+      - name: Build wheel & sdist
+        run: cd python && python -m build               # outputs to ./dist
+
+      - name: Upload to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: python -m twine upload dist/* --non-interactive
