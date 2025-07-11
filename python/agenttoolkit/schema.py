@@ -22,7 +22,6 @@ class GetMessageReplies(BaseModel):
     message_id: str = Field(description="The ID of the message for which to retrieve replies")
 
 
-# Template schemas
 class ListTemplates(BaseModel):
     tag_names: Optional[str] = Field(None, description="Filter by tag names")
     search: Optional[str] = Field(None, description="Search by field")
@@ -57,7 +56,6 @@ class PublishTemplate(BaseModel):
     template_id: str = Field(description="The ID of the template to publish")
 
 
-# User schemas
 class AddUser(BaseModel):
     unique_id: str = Field(description="Unique identifier for the user")
     email: Optional[str] = Field(None, description="User email address")
@@ -99,7 +97,6 @@ class ListUsers(BaseModel):
     search: Optional[str] = Field(None, description="Search term")
 
 
-# Workflow schemas
 class TriggerWorkflow(BaseModel):
     workflow_name: str = Field(description="Name of the workflow to trigger")
     data: Optional[Dict[str, Any]] = Field(None,description="Data to pass to the workflow")
@@ -123,7 +120,6 @@ class ScheduleWorkflow(BaseModel):
     end_date: Optional[str] = Field(None, description="End date for the schedule in 'YYYY-MM-DD' format")
 
 
-# Webhook schemas
 class ConfigureNotificationWebhooks(BaseModel):
     url: str = Field(description="Webhook URL for receiving status updates")
 

@@ -15,7 +15,6 @@ class SirenAPI:
     def run(self, method: str, params: Dict[str, Any]) -> Any:
         """Execute a method on the Siren client with the given parameters."""
         
-        # Messaging methods
         if method == "send_message":
             return self.client.message.send(**params)
         elif method == "get_message_status":
@@ -23,7 +22,6 @@ class SirenAPI:
         elif method == "get_message_replies":
             return self.client.message.get_replies(params["message_id"])
         
-        # Template methods
         elif method == "list_templates":
             return self.client.template.get(**params)
         elif method == "create_template":
@@ -42,7 +40,6 @@ class SirenAPI:
             version_id = params.pop("version_id") 
             return self.client.template.get_channel_templates(version_id, **params)
         
-        # User methods
         elif method == "add_user":
             return self.client.user.add(**params)
         elif method == "update_user":
@@ -57,7 +54,6 @@ class SirenAPI:
             raise NotImplementedError("list_users is not implemented")
             #return self.client.user.list(**params)
         
-        # Workflow methods
         elif method == "trigger_workflow":
             return self.client.workflow.trigger(**params)
         elif method == "trigger_workflow_bulk":
@@ -65,7 +61,6 @@ class SirenAPI:
         elif method == "schedule_workflow":
             return self.client.workflow.schedule(**params)
         
-        # Webhook methods
         elif method == "configure_notification_webhooks":
             return self.client.webhook.configure_notifications(**params)
         elif method == "configure_inbound_webhooks":

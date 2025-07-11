@@ -22,7 +22,6 @@ from .schema import (
 )
 
 tools: List[Dict] = [
-    # Messaging tools
     {
         "method": "send_message",
         "name": "Send Message",
@@ -57,7 +56,6 @@ tools: List[Dict] = [
         },
     },
     
-    # Template tools
     {
         "method": "list_templates",
         "name": "List Templates",
@@ -114,7 +112,6 @@ tools: List[Dict] = [
         },
     },
     
-    # User tools
     {
         "method": "add_user",
         "name": "Add User",
@@ -171,7 +168,6 @@ tools: List[Dict] = [
         },
     },
     
-    # Workflow tools
     {
         "method": "trigger_workflow",
         "name": "Trigger Workflow",
@@ -206,7 +202,6 @@ tools: List[Dict] = [
         },
     },
     
-    # Webhook tools
     {
         "method": "configure_notification_webhooks",
         "name": "Configure Notification Webhooks",
