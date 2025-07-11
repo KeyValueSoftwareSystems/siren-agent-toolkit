@@ -1,10 +1,29 @@
 # Siren Model Context Protocol Server
 
-The Siren [Model Context Protocol](https://modelcontextprotocol.com/) server allows you to integrate with Siren APIs through function calling. This protocol supports various tools to interact with Siren's messaging, templates, users, workflows, and webhooks.
+[![npm version](https://img.shields.io/npm/v/@trysiren/mcp.svg)](https://www.npmjs.com/package/@trysiren/mcp)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sirenapp/agent-toolkit/blob/main/LICENSE)
 
-## Quick Start
+The Siren [Model Context Protocol](https://modelcontextprotocol.com/) server enables seamless integration with Siren APIs through function calling. This protocol provides a comprehensive suite of tools for interacting with Siren's messaging, templates, users, workflows, and webhooks systems.
 
-To run the Siren MCP server using npx, use the following command:
+## 🚀 Quick Start
+
+## 📋 Requirements
+
+- A Siren API key (get one from [Siren Dashboard](https://app.trysiren.io/configuration))
+
+### Installation
+
+```bash
+# Install globally
+npm install -g @trysiren/mcp
+
+# Or use with npx without installation
+npx -y @trysiren/mcp
+```
+
+### Basic Usage
+
+To run the Siren MCP server:
 
 ```bash
 # To set up all available tools
@@ -14,13 +33,15 @@ npx -y @trysiren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY
 npx -y @trysiren/mcp --tools=messaging.send,templates.list,workflows.trigger --api-key=YOUR_SIREN_API_KEY
 ```
 
-Make sure to replace `YOUR_SIREN_API_KEY` with your actual Siren API key. Alternatively, you could set the `SIREN_API_KEY` in your environment variables.
+> **Important**: Replace `YOUR_SIREN_API_KEY` with your actual Siren API key. You can also set the `SIREN_API_KEY` environment variable instead.
 
-## Client Setup
+## 🔌 Client Setup
+
+This section covers how to configure various AI assistants and development environments to work with the Siren MCP server.
 
 ### Claude Desktop
 
-Add the following to your `claude_desktop_config.json`. See [here](https://modelcontextprotocol.io/quickstart/user) for more details.
+Add the following to your `claude_desktop_config.json`. See [Claude MCP documentation](https://modelcontextprotocol.io/quickstart/user) for more details.
 
 ```json
 {
@@ -29,7 +50,7 @@ Add the following to your `claude_desktop_config.json`. See [here](https://model
       "command": "npx",
       "args": [
         "-y",
-        "@siren/mcp",
+        "@trysiren/mcp",
         "--tools=all",
         "--api-key=YOUR_SIREN_API_KEY"
       ]
@@ -49,7 +70,7 @@ Or if you're using Docker:
         "run",
         "--rm",
         "-i",
-        "siren/mcp",
+        "trysiren/mcp",
         "--tools=all",
         "--api-key=YOUR_SIREN_API_KEY"
       ]
@@ -59,6 +80,8 @@ Or if you're using Docker:
 ```
 
 ### VS Code
+
+VS Code supports both workspace-specific and user-level MCP configurations.
 
 #### Workspace Configuration
 
@@ -72,7 +95,7 @@ Add a `.vscode/mcp.json` file in your workspace:
         "command": "npx",
         "args": [
           "-y",
-          "@siren/mcp",
+          "@trysiren/mcp",
           "--tools=messaging.send,templates.list,workflows.trigger",
           "--api-key=YOUR_SIREN_API_KEY"
         ]
@@ -93,7 +116,7 @@ Add to your VS Code user settings:
       "command": "npx",
       "args": [
         "-y",
-        "@siren/mcp",
+        "@trysiren/mcp",
         "--tools=all",
         "--api-key=YOUR_SIREN_API_KEY"
       ]
@@ -113,7 +136,7 @@ Cursor uses the same configuration format as VS Code. Add to your settings:
       "command": "npx",
       "args": [
         "-y",
-        "@siren/mcp",
+        "@trysiren/mcp",
         "--tools=all",
         "--api-key=YOUR_SIREN_API_KEY"
       ]
@@ -129,12 +152,12 @@ Configure Amazon Q CLI to use the Siren MCP server:
 ```bash
 q configure mcp add-server siren \
   --command "npx" \
-  --args "-y,@siren/mcp,--tools=all,--api-key=YOUR_SIREN_API_KEY"
+  --args "-y,@trysiren/mcp,--tools=all,--api-key=YOUR_SIREN_API_KEY"
 ```
 
 ### Other MCP Clients
 
-The Siren MCP server is compatible with any MCP client. Here are some popular ones:
+The Siren MCP server is compatible with any client that supports the Model Context Protocol standard. Here are configuration examples for popular MCP-compatible platforms:
 
 #### 5ire Desktop
 Configure in 5ire's MCP settings:
@@ -143,7 +166,7 @@ Configure in 5ire's MCP settings:
   "servers": {
     "siren": {
       "command": "npx",
-      "args": ["-y", "@siren/mcp", "--tools=all", "--api-key=YOUR_SIREN_API_KEY"]
+      "args": ["-y", "@trysiren/mcp", "--tools=all", "--api-key=YOUR_SIREN_API_KEY"]
     }
   }
 }
@@ -155,7 +178,7 @@ Add to FLUJO's workflow configuration:
 {
   "mcp_servers": {
     "siren": {
-      "command": "npx -y @siren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY"
+      "command": "npx -y @trysiren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY"
     }
   }
 }
@@ -169,7 +192,7 @@ Configure in Zed's assistant settings:
     "mcp_servers": {
       "siren": {
         "command": "npx",
-        "args": ["-y", "@siren/mcp", "--tools=all", "--api-key=YOUR_SIREN_API_KEY"]
+        "args": ["-y", "@trysiren/mcp", "--tools=all", "--api-key=YOUR_SIREN_API_KEY"]
       }
     }
   }
@@ -182,7 +205,7 @@ Add to your Replit project's MCP configuration:
 {
   "mcp": {
     "servers": {
-      "siren": "npx -y @siren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY"
+      "siren": "npx -y @trysiren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY"
     }
   }
 }
@@ -194,57 +217,100 @@ Configure in Codeium's extensions:
 {
   "mcp.servers.siren": {
     "command": "npx",
-    "args": ["-y", "@siren/mcp", "--tools=all", "--api-key=YOUR_SIREN_API_KEY"]
+    "args": ["-y", "@trysiren/mcp", "--tools=all", "--api-key=YOUR_SIREN_API_KEY"]
   }
 }
 ```
 
-## Available Tools
+## 🛠️ Available Tools
+
+The Siren MCP server provides the following tools for integration:
+
+### Messaging Tools
 
 | Tool | Description |
 |------|-------------|
 | `messaging.send` | Send a message to a recipient via a chosen channel |
 | `messaging.getStatus` | Get the status of a sent message |
 | `messaging.getReplies` | Get replies to a sent message |
+
+### Template Management Tools
+
+| Tool | Description |
+|------|-------------|
 | `templates.list` | List available message templates |
 | `templates.create` | Create a new message template |
 | `templates.update` | Update an existing message template |
 | `templates.delete` | Delete a message template |
 | `templates.publish` | Publish a template for use |
+
+### User Management Tools
+
+| Tool | Description |
+|------|-------------|
 | `users.add` | Add a new user to the system |
 | `users.update` | Update an existing user |
 | `users.delete` | Delete a user |
+
+### Workflow Tools
+
+| Tool | Description |
+|------|-------------|
 | `workflows.trigger` | Trigger a workflow execution |
 | `workflows.triggerBulk` | Trigger multiple workflow executions |
 | `workflows.schedule` | Schedule a workflow for future execution |
+
+### Webhook Configuration Tools
+
+| Tool | Description |
+|------|-------------|
 | `webhooks.configureNotification` | Configure notification webhooks |
 | `webhooks.configureInbound` | Configure inbound webhooks |
 
-## Tool Categories
+## 📦 Tool Categories
 
-You can use predefined tool categories for easier configuration:
+For convenience, you can use predefined tool categories in your configuration:
 
-- **Communication**: `messaging.send`, `messaging.getStatus`, `messaging.getReplies`
-- **Content**: `templates.list`, `templates.create`, `templates.update`, `templates.delete`, `templates.publish`
-- **Identity**: `users.add`, `users.update`, `users.delete`
-- **Automation**: `workflows.trigger`, `workflows.triggerBulk`, `workflows.schedule`
-- **Integration**: `webhooks.configureNotification`, `webhooks.configureInbound`
+| Category | Included Tools | Usage Example |
+|----------|----------------|---------------|
+| **communication** | `messaging.send`, `messaging.getStatus`, `messaging.getReplies` | `--tools=communication` |
+| **content** | `templates.list`, `templates.create`, `templates.update`, `templates.delete`, `templates.publish` | `--tools=content` |
+| **identity** | `users.add`, `users.update`, `users.delete` | `--tools=identity` |
+| **automation** | `workflows.trigger`, `workflows.triggerBulk`, `workflows.schedule` | `--tools=automation` |
+| **integration** | `webhooks.configureNotification`, `webhooks.configureInbound` | `--tools=integration` |
 
-## Configuration Options
+You can combine categories with specific tools:
+```bash
+npx @trysiren/mcp --tools=communication,templates.create,automation --api-key=YOUR_API_KEY
+```
+
+## ⚙️ Configuration Options
+
+### Command Line Arguments
+
+| Argument | Description | Default | Example |
+|----------|-------------|---------|----------|
+| `--tools` | Comma-separated list of tools to enable | none | `--tools=messaging.send,templates.list` |
+| `--api-key` | Your Siren API key | none | `--api-key=sk_siren_...` |
+| `--workspace` | Siren workspace ID | Default workspace | `--workspace=ws_abc123` |
+| `--port` | Port for HTTP server mode | 3000 | `--port=8080` |
+| `--debug` | Enable debug logging | false | `--debug` |
 
 ### API Key Format
 
 Siren supports multiple API key formats:
-- `sk_siren_...` - Standard Siren API key
-- `sk_test_...` - Test environment key
-- `sk_live_...` - Production environment key
+| Format | Description | Use Case |
+|--------|-------------|----------|
+| `sk_siren_...` | Standard Siren API key | General purpose |
+| `sk_test_...` | Test environment key | Development and testing |
+| `sk_live_...` | Production environment key | Production systems |
 
 ### Workspace Configuration
 
 If you're working with multiple Siren workspaces, specify the workspace ID:
 
 ```bash
-npx @siren/mcp --tools=all --api-key=YOUR_API_KEY --workspace=ws_your_workspace_id
+npx @trysiren/mcp --tools=all --api-key=YOUR_API_KEY --workspace=ws_your_workspace_id
 ```
 
 ### Environment Variables
@@ -252,50 +318,68 @@ npx @siren/mcp --tools=all --api-key=YOUR_API_KEY --workspace=ws_your_workspace_
 You can set environment variables instead of passing API keys as arguments:
 
 ```bash
+# API key
 export SIREN_API_KEY=sk_siren_your_api_key
-npx @siren/mcp --tools=all
+
+# Workspace ID (optional)
+export SIREN_WORKSPACE=ws_your_workspace_id
+
+# Run with environment variables
+npx @trysiren/mcp --tools=all
 ```
 
-## Debugging
+## 🔍 Debugging
+
+### Debug Mode
+
+Enable verbose logging with the `--debug` flag:
+
+```bash
+npx @trysiren/mcp --tools=all --api-key=YOUR_API_KEY --debug
+```
 
 ### Using MCP Inspector
 
-To debug your server, you can use the [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector).
+The [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector) provides a visual interface for debugging your MCP server.
 
-First, build the server:
+1. First, build the server:
 
 ```bash
 npm run build
 ```
 
-Run the following command in your terminal:
+2. Run with the MCP Inspector:
 
 ```bash
 # Start MCP Inspector and server with all tools
 npx @modelcontextprotocol/inspector node dist/index.js --tools=all --api-key=YOUR_SIREN_API_KEY
 ```
 
+3. Open the inspector in your browser at `http://localhost:6274`
+
 ### Docker Debugging
 
-First, build the Docker image:
+For Docker-based debugging:
+
+1. Build the Docker image:
 
 ```bash
-docker build -t siren/mcp .
+docker build -t trysiren/mcp .
 ```
 
-Run with MCP Inspector:
+2. Run with MCP Inspector:
 
 ```bash
 docker run -p 3000:3000 -p 5173:5173 -v /var/run/docker.sock:/var/run/docker.sock \
-  mcp/inspector docker run --rm -i siren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY
+  mcp/inspector docker run --rm -i trysiren/mcp --tools=all --api-key=YOUR_SIREN_API_KEY
 ```
 
 ### Health Check
 
-Test your configuration with a simple health check:
+Verify your configuration with a simple health check:
 
 ```bash
-npx @siren/mcp --tools=messaging.send --api-key=YOUR_SIREN_API_KEY
+npx @trysiren/mcp --tools=messaging.send --api-key=YOUR_SIREN_API_KEY
 ```
 
 If the server starts successfully, you'll see:
@@ -303,60 +387,68 @@ If the server starts successfully, you'll see:
 ✅ Siren MCP Server running on stdio
 ```
 
-## Troubleshooting
+You can also check the version:
+```bash
+npx @trysiren/mcp --version
+```
+
+## ❓ Troubleshooting
 
 ### Common Issues
 
-1. **Invalid API Key Format**
-   - Ensure your API key starts with `sk_siren_`, `sk_test_`, or `sk_live_`
-   - Check that the key is correctly set in your environment or arguments
+| Issue | Possible Causes | Solutions |
+|-------|----------------|------------|
+| **Invalid API Key** | • Incorrect format<br>• Expired key<br>• Key not set properly | • Ensure key starts with `sk_siren_`, `sk_test_`, or `sk_live_`<br>• Check environment variables<br>• Generate a new key if needed |
+| **Tool Not Found** | • Typo in tool name<br>• Tool not enabled<br>• Outdated package | • Verify tool name (case-sensitive)<br>• Add tool to `--tools` list<br>• Update to latest version |
+| **Connection Issues** | • Network problems<br>• Firewall blocking<br>• API endpoint down | • Check internet connection<br>• Configure firewall exceptions<br>• Verify API status at [status.trysiren.io](https://status.trysiren.io) |
+| **Permission Denied** | • Insufficient permissions<br>• Workspace access issues | • Check API key permissions<br>• Verify workspace access<br>• Contact Siren support |
+| **Rate Limiting** | • Too many requests<br>• Quota exceeded | • Implement request throttling<br>• Upgrade your plan if needed |
 
-2. **Tool Not Found**
-   - Verify the tool name matches exactly (case-sensitive)
-   - Check the available tools list above
+### Logs and Diagnostics
 
-3. **Connection Issues**
-   - Ensure you have an active internet connection
-   - Check if your firewall is blocking the connection
-   - Verify the Siren API endpoint is accessible
+Enable detailed logs for troubleshooting:
 
-4. **Permission Denied**
-   - Verify your API key has the necessary permissions for the tools you're using
-   - Check your workspace access if using workspace-specific tools
+```bash
+# Enable debug mode
+npx @trysiren/mcp --tools=all --api-key=YOUR_API_KEY --debug > mcp_debug.log
+```
 
 ### Getting Help
 
 For additional support:
-- Visit the [Siren Documentation](https://docs.trysiren.io/)
-- Check the [Model Context Protocol Documentation](https://modelcontextprotocol.io/)
-- Open an issue on the [Siren Agent Toolkit repository](https://github.com/sirenapp/agent-toolkit)
 
-## Examples
+- 📚 [Siren Documentation](https://docs.trysiren.io/)
+- 🔄 [Model Context Protocol Documentation](https://modelcontextprotocol.io/)
+- 🐛 [Open an issue](https://github.com/sirenapp/agent-toolkit/issues/new) on GitHub
+- 💬 [Join the Siren Community](https://community.trysiren.io/) for discussions
+- 📧 Contact support at support@trysiren.io
+
+## 📋 Examples
 
 ### Basic Messaging
 
 ```bash
 # Configure for basic messaging
-npx @siren/mcp --tools=messaging.send,messaging.getStatus --api-key=YOUR_API_KEY
+npx @trysiren/mcp --tools=messaging.send,messaging.getStatus --api-key=YOUR_API_KEY
 ```
 
 ### Template Management
 
 ```bash
 # Configure for template operations
-npx @siren/mcp --tools=templates.list,templates.create,templates.update --api-key=YOUR_API_KEY
+npx @trysiren/mcp --tools=templates.list,templates.create,templates.update --api-key=YOUR_API_KEY
 ```
 
 ### Workflow Automation
 
 ```bash
 # Configure for workflow automation
-npx @siren/mcp --tools=workflows.trigger,workflows.schedule --api-key=YOUR_API_KEY
+npx @trysiren/mcp --tools=workflows.trigger,workflows.schedule --api-key=YOUR_API_KEY
 ```
 
 ### Full Access
 
 ```bash
 # Configure all available tools
-npx @siren/mcp --tools=all --api-key=YOUR_API_KEY
+npx @trysiren/mcp --tools=all --api-key=YOUR_API_KEY
 ```
