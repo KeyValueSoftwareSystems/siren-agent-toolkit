@@ -68,8 +68,7 @@ export const sendMessage = async (
       providerName: params.provider_name,
       providerCode: params.provider_code,
     };
-
-    console.log("messagePayload---->", messagePayload);
+    
     const notificationId = await sirenClient.message.send(messagePayload);
 
     return { notificationId };
