@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "siren-agent-toolkit"
-version = "0.1.0"
+version = "0.1.2"
 description = "Agent toolkit for Siren notification platform"
 readme = "README.md"
 license = { text = "MIT" }
@@ -52,6 +52,9 @@ all = [
     "langchain-core>=0.1.0",
     "crewai>=0.1.0",
     "crewai-tools>=0.1.0",
+    "autogen-ext[openai]>=0.1.0",
+    "autogen-agentchat>=0.1.0",
+
 ]
 
 [project.urls]
