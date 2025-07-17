@@ -52,6 +52,7 @@ all = [
     "langchain-core>=0.1.0",
     "crewai>=0.1.0",
     "crewai-tools>=0.1.0",
+    "llama_index>=0.1.0",
 ]
 
 [project.urls]
