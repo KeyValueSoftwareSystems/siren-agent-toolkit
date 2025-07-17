@@ -42,13 +42,13 @@ const sendMessageSchema = z.object({
     .string()
     .optional()
     .describe(
-      'The name of the provider integration to use for sending the message. Optional; defaults to the default provider if not specified.'
+      'The name of the provider integration to use for sending the message. Optional; defaults to null if not specified.'
     ),
   provider_code: z
     .nativeEnum(ProviderCode)
     .optional()
     .describe(
-      'The code of the provider integration to use for sending the message. Optional; defaults to the default provider if not specified.'
+      'The code of the provider integration to use for sending the message. Optional; defaults to null if not specified.'
     ),
 });
 
@@ -68,6 +68,8 @@ export const sendMessage = async (
       providerName: params.provider_name,
       providerCode: params.provider_code,
     };
+
+    console.log("messagePayload---->", messagePayload);
     const notificationId = await sirenClient.message.send(messagePayload);
 
     return { notificationId };
