@@ -1,6 +1,6 @@
 {
   "name": "@trysiren/agent-toolkit",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Agent toolkit for Siren notification platform",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,6 +22,11 @@
       "import": "./dist/ai-sdk/index.js",
       "require": "./dist/ai-sdk/index.js",
       "types": "./dist/ai-sdk/index.d.ts"
+    },
+    "./mastra": {
+      "import": "./dist/mastra/index.js",
+      "require": "./dist/mastra/index.js",
+      "types": "./dist/mastra/index.d.ts"
     },
     "./mcp-server": {
       "import": "./dist/mcp-server/index.js",
@@ -50,7 +55,8 @@
     "openai",
     "langchain",
     "ai-sdk",
-    "mcp-server"
+    "mcp-server",
+    "mastra"
   ],
   "workspaces": [
     ".",
@@ -67,7 +73,8 @@
   "peerDependencies": {
     "@langchain/core": "^0.1.0",
     "ai": "^4.0.0",
-    "openai": "^4.0.0"
+    "openai": "^4.0.0",
+    "@mastra/core": "^0.10.15"
   },
   "peerDependenciesMeta": {
     "openai": {
@@ -77,6 +84,9 @@
       "optional": true
     },
     "ai": {
+      "optional": true
+    },
+    "@mastra/core": {
       "optional": true
     }
   },

@@ -1,0 +1,20 @@
+{
+  "name": "siren-mastra-example",
+  "version": "1.0.0",
+  "description": "Siren Agent Toolkit Mastra example",
+  "type": "module",
+  "scripts": {
+    "start": "tsx index.ts",
+    "dev": "tsx --watch index.ts"
+  },
+  "dependencies": {
+    "@mastra/core": "^0.10.15",
+    "@trysiren/agent-toolkit": "^0.1.4",
+    "dotenv": "^16.4.5",
+    "ai": "^4.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
