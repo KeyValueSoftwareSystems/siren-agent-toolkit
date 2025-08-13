@@ -42,6 +42,7 @@ Refer to our [examples directory](./examples) for detailed integration guides:
 | **OpenAI** | [View Example](./examples/openai/) | Complete OpenAI Assistant integration |
 | **LangChain** | [View Example](./examples/langchain/) | Agent with LangChain tools |
 | **Vercel AI SDK** | [View Example](./examples/ai-sdk/) | Next.js and Vercel AI SDK integration |
+| **Mastra** | [View Example](./examples/mastra/) | Mastra integration |
 
 ## 📋 Requirements
 

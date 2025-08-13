@@ -35,7 +35,6 @@ export const createTemplate = async (
   params: z.infer<typeof createTemplateSchema>
 ) => {
   try {
-    console.log("createTemplatess", params);
     const request: CreateTemplateRequest = {
       name: params.name,
       description: params.description,
