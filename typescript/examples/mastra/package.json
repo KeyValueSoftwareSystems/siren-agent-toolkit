@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@mastra/core": "^0.10.15",
-    "@trysiren/agent-toolkit": "^0.1.4",
+    "@trysiren/agent-toolkit": "^0.1.5",
     "dotenv": "^16.4.5",
     "ai": "^4.0.0"
   },
