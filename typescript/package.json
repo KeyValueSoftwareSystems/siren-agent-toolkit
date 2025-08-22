@@ -71,7 +71,7 @@
     "zod-to-json-schema": "^3.22.4"
   },
   "peerDependencies": {
-    "@langchain/core": "^0.3.6",
+    "@langchain/core": "^0.1.0",
     "ai": "^4.0.0",
     "openai": "^4.0.0",
     "@mastra/core": "^0.10.15"
