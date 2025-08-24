@@ -55,13 +55,13 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/siren/agent-toolkit"
-Repository = "https://github.com/siren/agent-toolkit.git"
+Homepage = "https://github.com/KeyValueSoftwareSystems/siren-agent-toolkit"
+Repository = "https://github.com/KeyValueSoftwareSystems/siren-agent-toolkit.git"
 Documentation = "https://docs.trysiren.io"
-"Bug Tracker" = "https://github.com/siren/agent-toolkit/issues"
+"Bug Tracker" = "https://github.com/KeyValueSoftwareSystems/siren-agent-toolkit/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["siren_agent_toolkit"]
+packages = ["agenttoolkit"]
 
 [tool.black]
 line-length = 88
