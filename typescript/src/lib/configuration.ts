@@ -5,9 +5,10 @@ export type Object =
   | 'templates'
   | 'users'
   | 'workflows'
-  | 'webhooks';
+  | 'webhooks'
+  | 'chat';
 
-export type Permission = 'create' | 'update' | 'read' | 'delete' | 'trigger' | 'schedule';
+export type Permission = 'create' | 'update' | 'read' | 'delete' | 'trigger' | 'schedule' | 'message' | 'end';
 
 export type Actions = {
   [K in Object]?: {

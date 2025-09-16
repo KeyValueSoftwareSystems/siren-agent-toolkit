@@ -19,6 +19,9 @@ import triggerWorkflowTool from './workflows/triggerWorkflow';
 import triggerWorkflowBulkTool from './workflows/triggerWorkflowBulk';
 import scheduleWorkflowTool from './workflows/scheduleWorkflow';
 
+import startChatTool from './chat/startChat';
+import endChatTool from './chat/endChat';
+
 import configureNotificationWebhooksTool from './webhooks/configureNotificationWebhooks';
 import configureInboundWebhooksTool from './webhooks/configureInboundWebhooks';
 
@@ -57,6 +60,9 @@ const tools = (context: Context): Tool[] => [
   triggerWorkflowTool(context),
   triggerWorkflowBulkTool(context),
   scheduleWorkflowTool(context),
+  
+  startChatTool(context),
+  endChatTool(context),
   
   configureNotificationWebhooksTool(context),
   configureInboundWebhooksTool(context),
