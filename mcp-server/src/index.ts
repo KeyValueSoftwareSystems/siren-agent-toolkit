@@ -39,6 +39,8 @@ const ACCEPTED_TOOLS = [
   'workflows.schedule',
   'webhooks.configureNotification',
   'webhooks.configureInbound',
+  'chat.message',
+  'chat.end',
 ];
 
 // Mapping from MCP tool names to their actual actions configuration
@@ -60,6 +62,8 @@ const TOOL_ACTIONS_MAP: { [key: string]: { [resource: string]: { [action: string
   'workflows.schedule': { workflows: { schedule: true } },
   'webhooks.configureNotification': { webhooks: { create: true } },
   'webhooks.configureInbound': { webhooks: { create: true } },
+  'chat.message': { chat: { message: true } },
+  'chat.end': { chat: { end: true } },
 };
 
 export function parseArgs(args: string[]): Options {
