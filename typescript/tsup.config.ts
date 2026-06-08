@@ -5,6 +5,7 @@ export default defineConfig({
     'src/openai/index.ts',
     'src/langchain/index.ts',
     'src/ai-sdk/index.ts',
+    'src/mastra/index.ts',
     'src/mcp-server/index.ts',
   ],
   format: ['cjs', 'esm'],
@@ -13,5 +14,5 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   outDir: 'dist',
-  external: ['openai', '@langchain/core', 'ai'],
+  external: ['openai', '@langchain/core', 'ai', '@mastra/core'],
 });
